@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import updateRequestList from './DownloadRequestList';
+import updateRequestList from '../DownloadRequestList';
 import config from 'react-global-configuration';
 
 class Download extends Component {
@@ -64,7 +64,7 @@ class Download extends Component {
             </FormGroup>
 
            <FormGroup>
-            <Button color="primary" type="submit">Save</Button>
+            <Button color="primary" type="submit">Download</Button>
           </FormGroup>
 
           </Form>

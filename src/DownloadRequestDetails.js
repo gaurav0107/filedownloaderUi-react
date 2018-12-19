@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from './Components/AppNavbar';
-import Download from './Download';
+import Download from './Components/Download';
 import { Link } from 'react-router-dom';
 import config from 'react-global-configuration';
 
