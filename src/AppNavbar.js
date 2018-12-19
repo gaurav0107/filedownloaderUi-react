@@ -23,10 +23,10 @@ export default class AppNavbar extends Component {
         <Nav className="ml-auto" navbar>
           <NavItem>
             <NavLink
-              href="https://twitter.com/oktadev">@oktadev</NavLink>
+              href="https://github.com/gaurav0107/FileDownloader/blob/master/README.md">Docs</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://github.com/oktadeveloper/okta-spring-boot-react-crud-example">GitHub</NavLink>
+            <NavLink href="https://github.com/gaurav0107">GitHub</NavLink>
           </NavItem>
         </Nav>
       </Collapse>

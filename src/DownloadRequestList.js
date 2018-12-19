@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import Download from './Download';
+///import downloadRequest from './DownloadRequest';
+import DownloadRequestHeaderRow from './DownloadRequestHeaderRow.js';
+import DownloadRequestItemRow from './DownloadRequestItemRow.js';
 import { Link } from 'react-router-dom';
 
 class DownloadRequestList extends Component {
@@ -26,22 +29,11 @@ class DownloadRequestList extends Component {
     if (isLoading) {
       return <p>Loading...</p>;
     }
-
-    const downloadList = downloadRequestList.map(downloadRequest => {
-      return (
-        <tr key={downloadRequest.requestId}>
-          <td style={{whiteSpace: 'nowrap'}}> {downloadRequest.requestId}</td>
-          <td style={{whiteSpace: 'nowrap'}}> {downloadRequest.requestTime}</td>
-          <td style={{whiteSpace: 'nowrap'}}> {downloadRequest.totalFiles}</td>
-          <td style={{whiteSpace: 'nowrap'}}> {downloadRequest.successfulDownloads}</td>
-          <td style={{whiteSpace: 'nowrap'}}> {downloadRequest.failedDownloads}</td>
-          <td style={{whiteSpace: 'nowrap'}}> {(downloadRequest.successfulDownloads/downloadRequest.totalFiles)*100}</td>
-          <td>
-            <Button size="sm" color="primary" tag={Link} to={"/downloadRequest/" + downloadRequest.requestId}>View</Button>
-          </td>
-        </tr>
-      )
-    });
+    const header = <DownloadRequestHeaderRow/>;
+    const rows = [];
+    downloadRequestList.forEach((item, index) =>{
+      rows.push(<DownloadRequestItemRow item={item} key={item.requestId + index.toString()} />)
+    })
 
     return (
       <div>
@@ -51,20 +43,10 @@ class DownloadRequestList extends Component {
           <h3>Download Request List</h3>
           <Table className="mt-4">
             <thead>
-            <tr>
-              <th width="10%">Request Id</th>
-              <th width="10%">Request Time</th>
-              <th width="10%">Total Files</th>
-              <th width="10%">Download Success</th>
-              <th width="10%">Download Failed</th>
-              <th width="10%">Success %</th>
-              <th width="10%">View Files</th>
-              {/* <th>Events</th>
-              <th width="10%">Actions</th> */}
-            </tr>
+            {header}
             </thead>
             <tbody>
-            {downloadList}
+              {rows}
             </tbody>
           </Table>
         </Container>
