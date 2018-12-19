@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from './AppNavbar';
+import AppNavbar from './Components/AppNavbar';
 import Download from './Download';
 ///import downloadRequest from './DownloadRequest';
-import DownloadRequestHeaderRow from './DownloadRequestHeaderRow.js';
-import DownloadRequestItemRow from './DownloadRequestItemRow.js';
+import DownloadRequestHeaderRow from './Components/DownloadRequestHeaderRow.js';
+import DownloadRequestItemRow from './Components/DownloadRequestItemRow.js';
 import { Link } from 'react-router-dom';
+import config from 'react-global-configuration';
 
 class DownloadRequestList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {downloadRequestList: [], isLoading: true};
+        this.fetchAll = this.fetchAll.bind(this);
+        this.handleRefresh = this.handleRefresh.bind(this);
       }
     
       componentDidMount() {
         this.setState({isLoading: true});
-    
-        fetch('http://localhost:8080/api/v1/downloadRequest')
+        this.fetchAll();
+        
+      }
+
+      handleRefresh(){
+        this.fetchAll();
+      }
+      fetchAll(){
+        fetch(config.get('API_BASE_URL')+'/api/v1/downloadRequest')
           .then(response => response.json())
           .then(data => this.setState({downloadRequestList: data, isLoading: false}));
       }
@@ -40,7 +50,10 @@ class DownloadRequestList extends Component {
         <AppNavbar/>
         <Download/>
         <Container fluid>
-          <h3>Download Request List</h3>
+          <h3 className="float-left">Download Request List</h3>
+          <div className="float-right">
+            <Button color="success" onClick={this.handleRefresh} >Refresh</Button>
+          </div>
           <Table className="mt-4">
             <thead>
             {header}

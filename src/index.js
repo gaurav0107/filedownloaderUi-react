@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
+import config from 'react-global-configuration';
+import configuration from './config';
+
+config.set(configuration);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from './AppNavbar';
+import AppNavbar from './Components/AppNavbar';
 import Download from './Download';
 import { Link } from 'react-router-dom';
+import config from 'react-global-configuration';
 
 class DownloadRequestList extends Component {
 
@@ -14,7 +15,7 @@ class DownloadRequestList extends Component {
       componentDidMount() {
         this.setState({isLoading: true});
     
-        fetch('http://localhost:8080/api/v1/downloadRequest/')
+        fetch(config.get('API_BASE_URL')+'/api/v1/downloadRequest/')
           .then(response => response.json())
           .then(data => this.setState({downloadRequestList: data, isLoading: false}));
       }

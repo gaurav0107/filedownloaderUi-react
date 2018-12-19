@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import updateRequestList from './DownloadRequestList';
+import config from 'react-global-configuration';
 
 class Download extends Component {
 
@@ -18,13 +20,7 @@ class Download extends Component {
     }
   
     async componentDidMount() {
-    //   if (this.props.match.params.id !== 'new') {
-    //     const group = await (await fetch(`/api/group/${this.props.match.params.id}`)).json();
-    //     this.setState({item: group});
-    //   }
-    console.log("doing mount stuff");
     }
-  
     handleChange(event) {
         const target = event.target;
         const value = target.value;
@@ -35,24 +31,11 @@ class Download extends Component {
     }
   
     async handleSubmit(event) {
-    //   event.preventDefault();
-    //   const {item} = this.state;
-  
-    //   await fetch('http://localhost:8080/api/v1/downloadRequest', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Accept': 'application/json',
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(item),
-    //   });
-    //   this.props.history.push('/groups');
-
         event.preventDefault();
         const {item} = this.state;
         const data = {"downloadFiles":(item.urls.trim().replace(/\n/g, ",").trim().replace(/[ ,]+/g, ",").trim().split(","))};
         console.log(data);
-        await fetch('http://localhost:8080/api/v1/downloadRequest',{
+        const response = await fetch(config.get('API_BASE_URL')+'/api/v1/downloadRequest',{
             method: 'POST',
             headers:{
                 'Accept': 'application/json',
@@ -60,6 +43,10 @@ class Download extends Component {
             },
             body: JSON.stringify(data)
         });
+        const status = await response.status;
+        if(status === 201){
+          console.log("time to refresh data");
+        }
     }
   
     render() {
