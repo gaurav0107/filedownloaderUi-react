@@ -31,7 +31,7 @@ class DownloadRequest extends Component {
       const {downloadRequest, isLoading} = this.state;
       const rows = [];
       const header = <DownloadFileHeaderRow/>;
-      debugger
+      //debugger
       if(downloadRequest && downloadRequest.downloadFiles)
         downloadRequest.downloadFiles.forEach((item, index) =>{
           rows.push(
