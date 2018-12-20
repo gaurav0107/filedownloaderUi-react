@@ -6,7 +6,8 @@ import config from 'react-global-configuration';
 class DownloadFileRow extends React.Component {
     render() {
       const { item } = this.props
-      //debugger
+      const getFile = <Button size="sm" target="_blank" color="primary" href={config.get('API_BASE_URL')+"/api/v1/getFile/" + item.fileName}>Get File</Button>
+      const fileNa = "NA"
       
       return (
        <tr key={item.destination}>
@@ -19,7 +20,7 @@ class DownloadFileRow extends React.Component {
            <td style={{whiteSpace: 'nowrap'}}> {item.downloadSpeed/1000}Kb/s</td>
            <td style={{whiteSpace: 'nowrap'}}> {item.state}</td>
            <td>
-            <Button size="sm" target="_blank" color="primary" href={config.get('API_BASE_URL')+"/api/v1/getFile/" + item.fileName}>Get File</Button>
+             {item.state === "Complete" ? getFile:fileNa}
           </td>
 
         </tr>
