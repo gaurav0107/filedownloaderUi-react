@@ -10,6 +10,7 @@ class DownloadFileHeaderRow extends React.Component {
               <th width="10%">Download Start Time</th>
               <th width="10%">Download End Time</th>
               <th width="10%">File Size</th>
+              <th width="10%">Download Speed</th>
               <th width="10%">Download State</th>
               <th width="10%">Get File</th>
          </tr>
