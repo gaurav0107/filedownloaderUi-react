@@ -11,8 +11,8 @@ This only provides basic functionality and uses api's exposed by [FileDownloader
 #### Prerequisites
 
 For building and running the application you need:
-* [yarn] for mac this can be done as: ```brew install yarn```
-* [File] (https://github.com/gaurav0107/FileDownloader) Follow instructions for installation
+* [yarn](https://yarnpkg.com) for mac this can be done as: ```brew install yarn```
+* [FileDownloader](https://github.com/gaurav0107/FileDownloader) Follow instructions for installation
 
 
 #### Installation
