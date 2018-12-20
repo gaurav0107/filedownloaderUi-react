@@ -36,7 +36,7 @@ class DownloadRequestList extends Component {
           <td style={{whiteSpace: 'nowrap'}}> {downloadRequest.totalFiles}</td>
           <td style={{whiteSpace: 'nowrap'}}> {downloadRequest.successfulDownloads}</td>
           <td style={{whiteSpace: 'nowrap'}}> {downloadRequest.failedDownloads}</td>
-          <td style={{whiteSpace: 'nowrap'}}> {(downloadRequest.successfulDownloads/downloadRequest.totalFiles)*100}</td>
+          <td style={{whiteSpace: 'nowrap'}}> {(downloadRequest.successfulDownloads/downloadRequest.totalFiles)*100>0?(downloadRequest.successfulDownloads/downloadRequest.totalFiles)*100:0}</td>
           <td>
             <Button size="sm" color="primary" tag={Link} to={"/downloadRequest/" + downloadRequest.requestId}>View</Button>
           </td>
