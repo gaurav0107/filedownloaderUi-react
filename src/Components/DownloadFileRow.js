@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import config from 'react-global-configuration';
 
 class DownloadFileRow extends React.Component {
     render() {
@@ -16,6 +17,11 @@ class DownloadFileRow extends React.Component {
            <td style={{whiteSpace: 'nowrap'}}> {item.downloadEndTime}</td>
            <td style={{whiteSpace: 'nowrap'}}> {item.fileSize/1000} Kb</td>
            <td style={{whiteSpace: 'nowrap'}}> {item.state}</td>
+           <td>
+            <Button size="sm" target="_blank" color="primary" href={config.get('API_BASE_URL')+"/api/v1/getFile/" 
+            + item.fileName}>Get File</Button>
+          </td>
+
         </tr>
       )
     }
